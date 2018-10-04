@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f7f8f9"
+    tools:context=".UserProfilePage">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/userImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_alignParentTop="true"
+        android:contentDescription="@string/nav_header_desc"
+        android:paddingTop="@dimen/nav_header_vertical_spacing"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/samraat"
+        android:layout_centerHorizontal="true"
+        />
+    <LinearLayout
+        android:id="@+id/userNameLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userImage"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal"
+        android:background="#fff">
+
+        <TextView
+            android:padding="10dp"
+            android:id="@+id/userName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/nav_header_vertical_spacing"
+            android:text="Samraat Anand"
+            android:textSize="24dp"
+            android:textColor="#000"
+
+            />
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_edit"
+             />
+
+    </LinearLayout>
+<TextView
+    android:id="@+id/note"
+    android:padding="5dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:textColor="#000"
+    android:text="Above name will be displayed as user name to others."
+    android:layout_below="@+id/userNameLinear"
+    android:textSize="16dp"/>
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Do what you like"
+        android:textColor="#000"
+        android:layout_below="@+id/note"
+        android:background="#fff"
+        android:padding="10dp"
+        android:textSize="18dp"/>
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_below="@+id/status"
+        android:text="@string/nav_header_subtitle"
+        android:textColor="#000"
+        android:background="#fff"
+        android:textSize="18dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+</RelativeLayout>

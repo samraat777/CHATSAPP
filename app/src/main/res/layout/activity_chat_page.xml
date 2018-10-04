@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ede9e9"
+    tools:context=".chatPage">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:background="#ede9e9"
+        android:id="@+id/messages_view"
+        android:layout_weight="2"
+        android:divider="#fff"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/userInput"
+        />
+    <LinearLayout
+        android:id="@+id/userInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:background="#ede9e9"
+        android:layout_marginTop="5dp"
+        >
+
+        <EditText
+            android:id="@+id/messageEditText"
+            android:textSize="14dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:ems="10"
+            android:padding="10dp"
+            android:text=""
+            android:background="@drawable/rounding_views"
+     />
+
+        <ImageView
+            android:id="@+id/sendImage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:scaleType="fitCenter"
+            android:padding="10dp"
+            android:onClick="send"
+            android:layout_marginHorizontal="10dp"
+            android:background="@drawable/rounding_views"
+            android:src="@drawable/send"/>
+    </LinearLayout>
+
+</RelativeLayout>
