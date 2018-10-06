@@ -13,6 +13,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,6 +26,10 @@ public class chatPage extends AppCompatActivity {
     ImageView send;
     ChatAdapter adapter;
     List<String> messages;
+    public static String msg;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference myRef = database.getReference("USER");
 
 
     @Override
@@ -68,7 +75,7 @@ public class chatPage extends AppCompatActivity {
 
     public void send(View view) {
 
-        String msg = chat_text.getText().toString().trim();
+        msg = chat_text.getText().toString().trim();
         messages.add(msg);
         adapter = new ChatAdapter(chatPage.this, messages);
         listView.setAdapter(adapter);

@@ -94,8 +94,10 @@ public class first extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(first.this, "Person selected: "+ lv.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
-                myRef.child(lv.getItemAtPosition(position).toString()).child(lv.getItemAtPosition(position).toString()+" to user").push().setValue("hii user");
+
+                myRef.child(lv.getItemAtPosition(position).toString()).child(lv.getItemAtPosition(position).toString()+" to user").push().setValue(chatPage.msg);
                 myRef.child(lv.getItemAtPosition(position).toString()).child("user to "+lv.getItemAtPosition(position).toString()).push().setValue("hii "+lv.getItemAtPosition(position).toString());
+
                 Intent intent=new Intent(first.this,chatPage.class);
                 startActivity(intent);
             }

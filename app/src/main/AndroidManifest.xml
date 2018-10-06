@@ -25,7 +25,8 @@
             android:label="@string/title_activity_first"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".UserProfilePage" />
-        <activity android:name=".chatPage"></activity>
+        <activity android:name=".chatPage" />
+        <activity android:name=".signIn"></activity>
     </application>
 
 </manifest>
