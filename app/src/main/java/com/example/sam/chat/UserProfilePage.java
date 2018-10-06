@@ -42,7 +42,7 @@ public class UserProfilePage extends AppCompatActivity {
                     User user = ds.getValue(User.class);
                     userName.setText(user.username);
                     phoneNumber.setText(user.phoneNumber);
-                    s=user.username;
+                    //s=user.username;
 
 
                 }

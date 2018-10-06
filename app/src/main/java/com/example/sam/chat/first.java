@@ -73,87 +73,42 @@ public class first extends AppCompatActivity
 
 
 
-        phoneNumber=findViewById(R.id.phoneNumber);
+        phoneNumber = findViewById(R.id.phoneNumber);
 
         value = new ArrayList<User>();
-
-
-        /*resolver=getContentResolver();
-        Cursor cursor=resolver.query(ContactsContract.Contacts.CONTENT_URI,null,null,null,null);
-
-        while(cursor.moveToNext())
-        {
-            String id=cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-            String name=cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-
-            Cursor phoneCursor=resolver.query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,
-                    ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = ? ",new String[]{id},null);
-
-            Log.i("MY INFO",id+ " = " + name);
-
-            while(phoneCursor.moveToNext())
-            {
-                String phoneNumber= phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                Log.i("My Info",phoneNumber);
-
-            }
-
-            Cursor emailCursor=resolver.query(ContactsContract.CommonDataKinds.Email.CONTENT_URI,null,
-                    ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ? ",new String[]{id},null);
-
-            while(emailCursor.moveToNext())
-            {
-                String emailId= phoneCursor.getString(phoneCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
-                Log.i("My Info",emailId);
-
-            }
-        }*/
-
-
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         final ListView lv = findViewById(R.id.userName);
-        String[] people={"Samraat","Sonu","Shubraj","Madhav","Saikat","SGP"};
-        String[] info={"Owner","Friend","Senior","Happy new year","dslr","Teacher"};
-        Integer[] imgid={R.drawable.samraat,R.drawable.sonukr,R.drawable.shubraj,R.drawable.madhav,R.drawable.saikat,R.drawable.sgp};
+        String[] people = {"Samraat","Sonu","Shubraj","Madhav","Saikat","SGP"};
+        String[] info = {"Owner","Friend","Senior","Happy new year","dslr","Teacher"};
+        Integer[] imgid = {R.drawable.samraat,R.drawable.sonukr,R.drawable.shubraj,R.drawable.madhav,R.drawable.saikat,R.drawable.sgp};
 
 
         custom=new customListview(this,people,info,imgid);
         lv.setAdapter(custom);
-/*        ArrayList<String> arrayName = new ArrayList<>();
-        arrayName.addAll(Arrays.asList(getResources().getStringArray(R.array.array_name)));
 
-        adapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, arrayName);
-        lv.setAdapter(adapter);*/
-
-
-        /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(first.this, "Your Profile", Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Toast.makeText(first.this, "Person selected: "+ lv.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                myRef.child(lv.getItemAtPosition(position).toString()).child(lv.getItemAtPosition(position).toString()+" to user").push().setValue("hii user");
+                myRef.child(lv.getItemAtPosition(position).toString()).child("user to "+lv.getItemAtPosition(position).toString()).push().setValue("hii "+lv.getItemAtPosition(position).toString());
                 Intent intent=new Intent(first.this,chatPage.class);
                 startActivity(intent);
             }
         });
 
-        NavigationView navigationView=(NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(first.this);
         headerView = navigationView.getHeaderView(0);
-        UserName = (TextView) headerView.findViewById(R.id.userName);
-        phoneNumber=(TextView) headerView.findViewById(R.id.phoneNumber);
+        UserName = headerView.findViewById(R.id.userName);
+        phoneNumber = headerView.findViewById(R.id.phoneNumber);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -165,7 +120,6 @@ public class first extends AppCompatActivity
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
 
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
