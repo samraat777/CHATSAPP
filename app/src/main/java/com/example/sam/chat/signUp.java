@@ -84,36 +84,6 @@ public class signUp extends AppCompatActivity {
         }
     }
 
-    /*private boolean validateName() {
-        if (nameStr.toString().length()==0) {
-            nameEdit.setError("please enter your name");
-            return false;
-        } else {
-            nameEdit.setError(null);
-            return true;
-        }
-    }
-
-    private boolean validatephoneNumber() {
-        if (phoneStr.toString().length()==0) {
-            nameEdit.setError("please enter valid number");
-            return false;
-        } else {
-            nameEdit.setError(null);
-            return true;
-        }
-    }
-
-
-    private boolean validateEmail() {
-        if (emailStr.toString().length()==0) {
-            emailText.setError("please enter your Email");
-            return false;
-        } else {
-            nameEdit.setError(null);
-            return true;
-        }
-    }*/
 
     public void submit(View v) {
 
