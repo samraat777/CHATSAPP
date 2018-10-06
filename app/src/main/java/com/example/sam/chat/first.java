@@ -58,6 +58,7 @@ public class first extends AppCompatActivity
     TextView phoneNumber;
     View headerView;
     List<User> value;
+
    // FirebaseAuth mAuth;
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("USER");
@@ -145,9 +146,12 @@ public class first extends AppCompatActivity
             }
         });
 
-        NavigationView navigationView=findViewById(R.id.nav_view);
+        NavigationView navigationView=(NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(first.this);
         headerView = navigationView.getHeaderView(0);
+        UserName = (TextView) headerView.findViewById(R.id.userName);
+        phoneNumber=(TextView) headerView.findViewById(R.id.phoneNumber);
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -156,19 +160,23 @@ public class first extends AppCompatActivity
         toggle.syncState();
 
 
+
         // Read from the database
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                UserName=headerView.findViewById(R.id.name);
-                String s="Dummy";
+
+
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     User user = ds.getValue(User.class);
-                    s=user.username;
+                    UserName.setText(user.username);
+                    phoneNumber.setText(user.phoneNumber);
+
+
                 }
-              UserName.setText(s);
+
             }
 
             @Override

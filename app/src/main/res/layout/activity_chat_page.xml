@@ -49,7 +49,9 @@
             android:onClick="send"
             android:layout_marginHorizontal="10dp"
             android:background="@drawable/rounding_views"
-            android:src="@drawable/send"/>
+            android:src="@drawable/send"
+            android:visibility="invisible"
+            />
     </LinearLayout>
 
 </RelativeLayout>
