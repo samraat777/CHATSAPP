@@ -26,7 +26,7 @@ public class signUp extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     String nameStr;
-    String phoneStr;
+    public static String phoneStr;
     String emailStr;
     private TextInputLayout nameEdit;
     private TextInputLayout phoneEdit;
@@ -97,6 +97,7 @@ public class signUp extends AppCompatActivity {
             //Toast.makeText(this, "info" + nameStr + phoneStr + emailStr, Toast.LENGTH_SHORT).show();
             writeNewUser("1",nameStr,phoneStr,emailStr);
 
+            //Intent intent=new Intent(this,signIn.class);
             Intent intent=new Intent(this,first.class);
             startActivity(intent);
 

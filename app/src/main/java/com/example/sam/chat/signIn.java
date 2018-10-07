@@ -37,6 +37,7 @@ public class signIn extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         phoneNumber = findViewById(R.id.phoneNumber);
+        //Try to set phonenumber taken
         otp = findViewById(R.id.OTP);
 
 

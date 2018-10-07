@@ -23,15 +23,15 @@ import java.util.List;
 
 import static com.example.sam.chat.R.layout.my_message;
 
-public class ChatAdapter extends BaseAdapter{
+public class ChatAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<String> message;
 
-    public ChatAdapter(Context context, List<String> name) {
+    public ChatAdapter(Context context, List<String> msg) {
 
         this.mContext = context;
-        this.message = name;
+        this.message = msg;
     }
 
 
@@ -55,27 +55,26 @@ public class ChatAdapter extends BaseAdapter{
 
         Holder holder = new Holder();
 
-        if(convertView == null){
+        if (convertView == null) {
 
             LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-            convertView = layoutInflater.inflate(R.layout.my_message,parent,false);
+            convertView = layoutInflater.inflate(R.layout.my_message, parent, false);
             holder.sendText = convertView.findViewById(R.id.message_body);
             holder.receiveText = convertView.findViewById(R.id.message_receive);
 
             convertView.setTag(holder);
 
-        }else {
+        } else {
             holder = (Holder) convertView.getTag();
         }
 
-        holder.sendText.setText(message.get(position));
+        //holder.sendText.setText(message.get(position));
         holder.receiveText.setText(message.get(position));
 
         return convertView;
     }
 
-    public class Holder
-    {
+    public class Holder {
         TextView sendText;
         TextView receiveText;
     }

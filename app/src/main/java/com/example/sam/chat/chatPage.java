@@ -27,9 +27,12 @@ public class chatPage extends AppCompatActivity {
     ChatAdapter adapter;
     List<String> messages;
     public static String msg;
+    String personClicked;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("USER");
+
+
 
 
     @Override
@@ -42,6 +45,8 @@ public class chatPage extends AppCompatActivity {
         send = findViewById(R.id.sendImage);
         // listView.setAdapter(adapter);
         messages = new ArrayList<>();
+
+        personClicked=getIntent().getStringExtra("PersonClicked");
 
         chat_text.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,6 +86,9 @@ public class chatPage extends AppCompatActivity {
         listView.setAdapter(adapter);
         chat_text.setText("");
         scrollMyListViewToBottom();
+        myRef.child(personClicked).child(personClicked+" to user").push().setValue(chatPage.msg);
+        msg=null;
+
 
     }
 
