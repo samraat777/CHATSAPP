@@ -1,15 +1,8 @@
 package com.example.sam.chat;
 
-import android.app.SearchManager;
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.view.MenuItemCompat;
 
 import android.util.Log;
 import android.view.View;
@@ -23,38 +16,31 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
-import android.app.SearchManager;
-import android.widget.RelativeLayout;
 import android.widget.SearchView;
-import android.widget.SearchView.OnQueryTextListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-
 //import static android.support.transition.Transition.ArrayListManager.add;
 
-public class first extends AppCompatActivity
+public class First extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ArrayAdapter<String> adapter;;
     customListview custom;
     ContentResolver resolver;
     private static int PICK_CONTACT = 1;
     TextView UserName;
+    public static String name;
     TextView phoneNumber;
     View headerView;
     List<User> value;
@@ -80,6 +66,8 @@ public class first extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
+
         final ListView lv = findViewById(R.id.userName);
         String[] people = {"Samraat","Sonu","Shubraj","Madhav","Saikat","SGP"};
         String[] info = {"Owner","Friend","Senior","Happy new year","dslr","Teacher"};
@@ -93,19 +81,19 @@ public class first extends AppCompatActivity
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(first.this, "Person selected: "+ lv.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
+                Toast.makeText(First.this, "Person selected: "+ lv.getItemAtPosition(position), Toast.LENGTH_SHORT).show();
 
-                myRef.child(lv.getItemAtPosition(position).toString()).child(lv.getItemAtPosition(position).toString()+" to user").push().setValue(chatPage.msg);
+               // myRef.child(lv.getItemAtPosition(position).toString()).child(lv.getItemAtPosition(position).toString()+" to user").push().setValue(chatPage.msg);
                // myRef.child(lv.getItemAtPosition(position).toString()).child("user to "+lv.getItemAtPosition(position).toString()).push().setValue("hii "+lv.getItemAtPosition(position).toString());
 
-                Intent intent=new Intent(first.this,chatPage.class);
+                Intent intent=new Intent(First.this,chatPage.class);
                 intent.putExtra("PersonClicked",lv.getItemAtPosition(position).toString());
                 startActivity(intent);
             }
         });
 
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(first.this);
+        navigationView.setNavigationItemSelectedListener(First.this);
         headerView = navigationView.getHeaderView(0);
         UserName = headerView.findViewById(R.id.userName);
         phoneNumber = headerView.findViewById(R.id.phoneNumber);
@@ -128,7 +116,9 @@ public class first extends AppCompatActivity
                 // whenever data at this location is updated.
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
                     User user = ds.getValue(User.class);
-                    UserName.setText(user.username);
+                    UserName.setText(user.getUsername());
+                    Log.i("_name",user.getUsername());
+                    name = user.getUsername();
                     phoneNumber.setText(user.phoneNumber);
 
 

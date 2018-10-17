@@ -5,19 +5,10 @@ import android.net.Uri;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Toast;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -26,7 +17,7 @@ public class signUp extends AppCompatActivity {
     private static final int PICK_IMAGE_REQUEST = 1;
 
     String nameStr;
-    public static String phoneStr;
+    String phoneStr;
     String emailStr;
     private TextInputLayout nameEdit;
     private TextInputLayout phoneEdit;
@@ -98,7 +89,7 @@ public class signUp extends AppCompatActivity {
             writeNewUser("1",nameStr,phoneStr,emailStr);
 
             //Intent intent=new Intent(this,signIn.class);
-            Intent intent=new Intent(this,first.class);
+            Intent intent=new Intent(this,First.class);
             startActivity(intent);
 
 

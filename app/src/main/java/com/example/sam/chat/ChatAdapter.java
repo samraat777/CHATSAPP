@@ -1,43 +1,40 @@
 package com.example.sam.chat;
 
 import android.content.Context;
-import android.database.DataSetObserver;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.google.firebase.database.DataSnapshot;
-
-import java.util.ArrayList;
 import java.util.List;
-
-import static com.example.sam.chat.R.layout.my_message;
 
 public class ChatAdapter extends BaseAdapter {
 
     private Context mContext;
-    private List<String> message;
+    private List<RetrieveMessage> message;
+    RetrieveMessage newmessage;
+    private List<RetrieveMessage> rMessage;
 
-    public ChatAdapter(Context context, List<String> msg) {
+
+    public ChatAdapter(Context context, List<RetrieveMessage> msg, List<RetrieveMessage> rMessage) {
 
         this.mContext = context;
         this.message = msg;
+        this.rMessage = rMessage;
     }
 
 
     @Override
     public int getCount() {
-        return message.size();
+
+
+        int max = message.size();
+        if (max < rMessage.size()) {
+            max = rMessage.size();
+        }
+        return max;
     }
 
     @Override
@@ -69,7 +66,19 @@ public class ChatAdapter extends BaseAdapter {
         }
 
         //holder.sendText.setText(message.get(position));
-        holder.receiveText.setText(message.get(position));
+        if (message.size() !=0) {
+
+            newmessage = message.get(position);
+
+            //Log.i("_msg", newmessage.getMessage());
+
+            holder.sendText.setText(newmessage.getMessage());
+        }
+        if (rMessage.size() != 0) {
+        RetrieveMessage rtr = rMessage.get(position);
+
+            holder.receiveText.setText(rtr.getMessage());
+        }
 
         return convertView;
     }
